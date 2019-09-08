@@ -8,20 +8,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.JsonRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 EditText et_username,et_password;
@@ -37,7 +32,7 @@ TextView errormsg;
     et_password=findViewById(R.id.password);
     errormsg=findViewById(R.id.errorbox);
          requestQueue= Volley.newRequestQueue(this);
-        url="http://106.220.227.160:5000/login/";
+        url="http://localhost:5000/Androidlogin/";
     }
     public void login(View v) throws JSONException {
 
@@ -51,8 +46,14 @@ TextView errormsg;
                    @Override
                    public void onResponse(JSONObject response) {
                        try {
-                           if ("success" == response.getString("result")){
-                               startActivity(new Intent(MainActivity.this,SuccessActivity.class));
+                           if ("user" == response.getString("role")){
+                               startActivity(new Intent(MainActivity.this, UserActivity.class));
+                           }
+                           else   if ("admin" == response.getString("role")){
+                               startActivity(new Intent(MainActivity.this, AdminActivity.class));
+                           }
+                           else   if ("seller" == response.getString("role")){
+                               startActivity(new Intent(MainActivity.this, SellerActivity.class));
                            }
                            else
                            {
