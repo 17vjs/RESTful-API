@@ -15,7 +15,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,16 +29,13 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
     EditText et_username, et_password;
     String username, password;
     RequestQueue requestQueue;
-    String url= "http://localhost:5000/Androidlogin/";;
+    String url= "http://localhost:5000/Androidlogin/";
     TextView errormsg;
-
     LocationManager locationManager;
 
     @Override
@@ -52,16 +48,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         checkPermissions();
 
     }
-    void setUIViews()
-    {
+    void setUIViews() {
         et_username = findViewById(R.id.username);
         et_password = findViewById(R.id.password);
         errormsg = findViewById(R.id.errorbox);
         requestQueue = Volley.newRequestQueue(this);
 
     }
-    void checkPermissions()
-    {
+    void checkPermissions() {
 
         if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
@@ -102,8 +96,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     @Override
     public void onLocationChanged(Location location) {
+
         Toast.makeText(this, "Latitude: " + location.getLatitude() + "\n Longitude: " + location.getLongitude(), Toast.LENGTH_SHORT).show();
-//code to fetch the address
+        Intent intent = new Intent(MainActivity.this, StoresListActivity.class);
+        intent.putExtra("location",new double[]{location.getLatitude(),location.getLongitude()});
+        startActivity(intent);
+        //code to fetch the address
 //        try {
 //            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
 //            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
@@ -143,13 +141,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            if ("user" == response.getString("role")){
+                            if ("user".equals(response.getString("role"))){
                                 startActivity(new Intent(MainActivity.this, UserActivity.class));
                             }
-                            else   if ("admin" == response.getString("role")){
+                            else   if ("admin".equals(response.getString("role"))){
                                 startActivity(new Intent(MainActivity.this, AdminActivity.class));
                             }
-                            else   if ("seller" == response.getString("role")){
+                            else   if ("seller".equals(response.getString("role"))){
                                 startActivity(new Intent(MainActivity.this, SellerActivity.class));
                             }
                             else

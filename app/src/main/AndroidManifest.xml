@@ -21,6 +21,15 @@
         <activity android:name=".UserActivity">
 
         </activity>
+        <activity android:name=".AdminActivity">
+
+        </activity>
+        <activity android:name=".SellerActivity">
+
+        </activity>
+        <activity android:name=".StoresListActivity">
+
+        </activity>
     </application>
 
 </manifest>
