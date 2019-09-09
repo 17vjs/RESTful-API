@@ -8,40 +8,38 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-   <TextView
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:text="LOGIN"
-       android:gravity="center"
-       android:textColor="@color/colorPrimaryDark"
-       android:textSize="25sp"
-       android:textStyle="bold"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LOGIN"
+        android:gravity="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
     <View
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@color/colorAccent"/>
-<EditText
-android:padding="10dp"
-    android:layout_marginTop="15dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:outlineAmbientShadowColor="@color/colorPrimaryDark"
-    android:id="@+id/username"
-    android:hint="Username"/>
+    <EditText
+        android:padding="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/username"
+        android:hint="Username"/>
     <EditText
         android:inputType="textPassword"
         android:padding="10dp"
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:outlineAmbientShadowColor="@color/colorPrimaryDark"
         android:id="@+id/password"
         android:hint="Password"/>
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/errorbox"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/errorbox"/>
     <Button
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
@@ -50,5 +48,4 @@ android:padding="10dp"
         android:text="Login"
         android:onClick="login"
         android:textColor="#ffffff"/>
-
 </LinearLayout>
